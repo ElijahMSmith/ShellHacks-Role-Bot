@@ -10,6 +10,9 @@ const commands = [
 	new SlashCommandBuilder()
 		.setName("shellhacks-hacker")
 		.setDescription("Add the ShellHacks Hacker role to yourself"),
+	new SlashCommandBuilder()
+		.setName("hackgt-hacker")
+		.setDescription("Add the HackGT Hacker role to yourself"),
 ].map((command) => command.toJSON())
 
 const rest = new REST({ version: "9" }).setToken(process.env.TOKEN)

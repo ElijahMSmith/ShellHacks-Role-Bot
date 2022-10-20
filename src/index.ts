@@ -19,7 +19,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS] })
 // --------- Main execution ---------
 
 client.once("ready", async () => {
-	console.log("ShellHacks Role bot online.")
+	console.log("Hackathon Role bot online.")
 })
 
 client.on("interactionCreate", async (interaction) => {
@@ -32,7 +32,24 @@ client.on("interactionCreate", async (interaction) => {
 
 		// Get role with ID
 		const roleToGive = await interaction.guild.roles.fetch(
-			process.env.ROLE_ID
+			process.env.SHELLHACKS_ROLE_ID
+		)
+
+		// Add role to member
+		member.roles
+			.add(roleToGive)
+			.then(() => interaction.reply("Role added!"))
+			.catch((err) => {
+				console.log(err)
+				interaction.reply("Failed to add role.")
+			})
+	}
+	if (commandName === "hackgt-hacker") {
+		const member = interaction.guild.members.cache.get(interaction.user.id)
+
+		// Get role with ID
+		const roleToGive = await interaction.guild.roles.fetch(
+			process.env.HACKGT_ROLE_ID
 		)
 
 		// Add role to member
